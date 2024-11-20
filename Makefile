@@ -55,3 +55,10 @@ NETWORK_ARGS_ANVIL := --rpc-url $(RPC_URL_ANVIL) --private-key $(PRIVATE_KEY_ANV
 NETWORK_ARGS_SEPOLIA := --rpc-url $(RPC_URL_SEPOLIA) --account $(ACCOUNT_DEV) --sender $(ADDRESS_DEV) --broadcast --verify --etherscan-api-key $(ETHERSCAN_API_KEY) -vvvv
 
 anvil :; anvil -m 'test test test test test test test test test test test junk' --steps-tracing --block-time 1
+
+deploy :; forge script script/DeployBox.s.sol:DeployBox $(NETWORK_ARGS_ANVIL)
+upgrade :; forge script script/UpgradeBox.s.sol:UpgradeBox $(NETWORK_ARGS_ANVIL)
+
+# this address might change in each deployment
+PROXY_ADDRESS_ANVIL := 0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512
+get-version :; cast --to-dec $(shell cast call $(PROXY_ADDRESS_ANVIL) "version()" --rpc-url $(RPC_URL_ANVIL))
