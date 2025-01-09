@@ -16,3 +16,16 @@ The key idea is that the implementation contract can be upgraded while the proxy
 Dealing with upgradable smart contracts can be complex, but understanding the pros and cons helps in making the right decision while developing smart contracts.
 Do remember that upgradable smart contracts might have their advantages, but they also come with their possible drawbacks, such as centralized control and increased potential for breaches.
 Always weigh the necessity against the risks before deciding on using upgradable smart contracts.
+
+## Sublesson
+
+### DelegateCallExample
+
+`delegatecall` is a low level function similar to `call`.
+
+When contract `A` executes `delegatecall` to contract `B`, `B`'s code is executed
+with contract `A`'s storage, msg.sender and msg.value.
+
+### SmallProxy
+
+A simple example of a basic proxy contract.
